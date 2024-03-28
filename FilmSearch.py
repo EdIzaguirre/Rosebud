@@ -8,6 +8,13 @@ st.set_page_config(
     page_icon="🎥",
 )
 
+with st.sidebar:
+    openai_api_key = st.text_input(
+        "OpenAI API Key", key="chatbot_api_key", type="password")
+    "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
+    "[View the source code](https://github.com/EdIzaguirre/FilmSearchOpen)"
+    "If there is nothing being generated after putting in your API key, typing your query, and hitting submit, check to make sure your API key is correct."
+
 with open('./config.json') as f:
     config = json.load(f)
 
@@ -27,8 +34,8 @@ database.
 """
 
 
-def generate_response(input_text):
-    chat = FilmSearch()
+def generate_response(input_text, openai_api_key):
+    chat = FilmSearch(openai_api_key)
     st.write_stream(chat.ask(input_text))
 
 
@@ -59,8 +66,11 @@ with st.form('my_form'):
         value=st.session_state.query if 'query' in st.session_state else '',
         label_visibility='hidden')
     submitted = st.form_submit_button('Submit')
+    if not openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        st.stop()
     if submitted:
-        generate_response(text)
+        generate_response(text, openai_api_key=openai_api_key)
 
 st.divider()
 

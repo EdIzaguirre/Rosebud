@@ -16,6 +16,9 @@ from langchain.chains.query_constructor.base import (
 # Pinecone
 from pinecone import Pinecone
 
+# OpenAI
+import openai
+
 # General
 import json
 from dotenv import load_dotenv
@@ -33,12 +36,12 @@ class FilmSearch:
     retriever = None
     rag_chain_with_source = None
 
-    def __init__(self):
+    def __init__(self, openai_api_key):
         load_dotenv()
         self.initialize_query_constructor()
-        self.initialize_vector_store()
-        self.initialize_retriever()
-        self.initialize_chat_model()
+        self.initialize_vector_store(openai_api_key)
+        self.initialize_retriever(openai_api_key)
+        self.initialize_chat_model(openai_api_key)
 
     def initialize_query_constructor(self):
         document_content_description = "Brief overview of a movie, along with keywords"
@@ -132,7 +135,7 @@ class FilmSearch:
             examples=examples,
         )
 
-    def initialize_vector_store(self):
+    def initialize_vector_store(self, open_ai_key):
         # Create empty index
         PINECONE_KEY, PINECONE_INDEX_NAME = os.getenv(
             'PINECONE_API_KEY'), os.getenv('PINECONE_INDEX_NAME')
@@ -142,17 +145,19 @@ class FilmSearch:
         # Target index and check status
         pc_index = pc.Index(PINECONE_INDEX_NAME)
 
-        embeddings = OpenAIEmbeddings(model='text-embedding-ada-002')
+        embeddings = OpenAIEmbeddings(model='text-embedding-ada-002',
+                                      api_key=open_ai_key)
 
         self.vectorstore = PineconeVectorStore(
             pc_index, embeddings
         )
 
-    def initialize_retriever(self):
+    def initialize_retriever(self, open_ai_key):
         query_model = ChatOpenAI(
             model=self.RETRIEVER_MODEL_NAME,
             temperature=0,
             streaming=True,
+            api_key=open_ai_key
         )
 
         output_parser = StructuredQueryOutputParser.from_components()
@@ -165,7 +170,7 @@ class FilmSearch:
             search_kwargs={'k': 10}
         )
 
-    def initialize_chat_model(self):
+    def initialize_chat_model(self, open_ai_key):
         def format_docs(docs):
             return "\n\n".join(f"{doc.page_content}\n\nMetadata: {doc.metadata}" for doc in docs)
 
@@ -173,6 +178,7 @@ class FilmSearch:
             model=self.SUMMARY_MODEL_NAME,
             temperature=0,
             streaming=True,
+            api_key=open_ai_key
         )
 
         prompt = ChatPromptTemplate.from_messages(
