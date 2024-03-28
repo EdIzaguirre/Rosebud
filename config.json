@@ -1,0 +1,7 @@
+{
+  "RETRIEVER_MODEL_NAME": "gpt-4-0125-preview",
+  "SUMMARY_MODEL_NAME": "gpt-3.5-turbo-0125",
+  "SUMMARY_MODEL_NAME_GPT4": "gpt-4-0125-preview",
+
+  "years": [1920, 2023]
+}
