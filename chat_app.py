@@ -16,9 +16,6 @@ from langchain.chains.query_constructor.base import (
 # Pinecone
 from pinecone import Pinecone
 
-# OpenAI
-import openai
-
 # General
 import json
 from dotenv import load_dotenv
@@ -36,10 +33,11 @@ class FilmSearch:
     retriever = None
     rag_chain_with_source = None
 
-    def __init__(self, openai_api_key):
+    def __init__(self, openai_api_key, pinecone_api_key, pinecone_index_name):
         load_dotenv()
         self.initialize_query_constructor()
-        self.initialize_vector_store(openai_api_key)
+        self.initialize_vector_store(
+            openai_api_key, pinecone_api_key, pinecone_index_name)
         self.initialize_retriever(openai_api_key)
         self.initialize_chat_model(openai_api_key)
 
@@ -135,15 +133,11 @@ class FilmSearch:
             examples=examples,
         )
 
-    def initialize_vector_store(self, open_ai_key):
-        # Create empty index
-        PINECONE_KEY, PINECONE_INDEX_NAME = os.getenv(
-            'PINECONE_API_KEY'), os.getenv('PINECONE_INDEX_NAME')
-
-        pc = Pinecone(api_key=PINECONE_KEY)
+    def initialize_vector_store(self, open_ai_key, pinecone_api_key, pinecone_index_name):
+        pc = Pinecone(api_key=pinecone_api_key)
 
         # Target index and check status
-        pc_index = pc.Index(PINECONE_INDEX_NAME)
+        pc_index = pc.Index(pinecone_index_name)
 
         embeddings = OpenAIEmbeddings(model='text-embedding-ada-002',
                                       api_key=open_ai_key)

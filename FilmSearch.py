@@ -35,7 +35,10 @@ database.
 
 
 def generate_response(input_text, openai_api_key):
-    chat = FilmSearch(openai_api_key)
+    pinecone_api_key = st.secrets["PINECONE_API_KEY"]
+    pinecone_index_name = st.secrets["PINECONE_INDEX_NAME"]
+
+    chat = FilmSearch(openai_api_key, pinecone_api_key, pinecone_index_name)
     st.write_stream(chat.ask(input_text))
 
 
