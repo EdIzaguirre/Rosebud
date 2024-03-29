@@ -45,7 +45,6 @@ def get_id_list(api_key, year, max_retries=5):
 def get_data(API_key, Movie_ID, max_retries=5):
     """
     Function to pull details of your film of interest in JSON format.
-    Assumes desired language is in US-Engish.
 
     parameters:
     API_key (str): Your API key for TMBD
