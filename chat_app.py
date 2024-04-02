@@ -54,6 +54,7 @@ class FilmSearch:
             "$lte",  # Less than or equal to (number)
             "$in",  # In array (string or number)
             "$nin",  # Not in array (string or number)
+            "$exists",  # Has the specified metadata field (boolean)
         ]
 
         examples = [
