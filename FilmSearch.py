@@ -80,11 +80,14 @@ st.divider()
 st.header("Data Source")
 st.write(""" All data was pulled from the The Movie Database (TMDB) and 
          compiled into a CSV file, provided here. Watch providers were 
-         pulled from JustWatch. Below is a snippet of data from the year 2023. 
-         For the full data, download the full movie collection data csv.""")
-st.write("[View here.](https://github.com/EdIzaguirre/FilmSearchOpen/blob/main/data/full_movie_collection_data.csv)")
+         pulled from JustWatch. Below is a snippet of data from the year 2023. """)
 
-# df = pd.read_csv('./data/2023_movie_collection_data.csv')
+df = pd.read_csv('./data/2023_movie_collection_data.csv')
+st.dataframe(df, hide_index=True)
+
+st.write(
+    "For the full data, download the full movie collection data csv [here](https://github.com/EdIzaguirre/FilmSearchOpen/blob/main/data/full_movie_collection_data.csv).""")
+
 
 # # Prevent commas from appearing in release year
 # df['Release Year'] = df['Release Year'].astype(str)
