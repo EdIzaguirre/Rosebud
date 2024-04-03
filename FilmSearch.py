@@ -83,15 +83,14 @@ st.write(""" All data was pulled from the The Movie Database (TMDB) and
         Below is a snippet of data from the year 2023. """)
 
 df = pd.read_csv('./data/2023_movie_collection_data.csv')
+
+# Prevent commas from appearing in release year
+df['Release Year'] = df['Release Year'].astype(str)
+
+# Reverse order
+df = df.iloc[::-1]
+
 st.dataframe(df, hide_index=True)
 
 st.write(
     "For the full data, download the full_movie_collection_data.csv [here](https://github.com/EdIzaguirre/FilmSearchOpen/blob/main/data/full_movie_collection_data.csv).""")
-
-
-# # Prevent commas from appearing in release year
-# df['Release Year'] = df['Release Year'].astype(str)
-
-# # Reverse order
-# df = df.iloc[::-1]
-# st.dataframe(df, hide_index=True)
