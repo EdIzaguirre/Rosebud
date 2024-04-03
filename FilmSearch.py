@@ -77,14 +77,13 @@ with st.form('my_form'):
 
 st.divider()
 
-dfs = [pd.read_csv(f'data/{year}_movie_collection_data.csv')
-       for year in range(beginning_year, ending_year+1)]
-
-# Combine the dataframes
-combined_df = pd.concat(dfs)
+df = pd.read_csv('./data/full_movie_collection_data.csv')
 
 # Prevent commas from appearing in release year
-combined_df['Release Year'] = combined_df['Release Year'].astype(str)
+df['Release Year'] = df['Release Year'].astype(str)
+
+# Reverse order
+df = df.iloc[::-1]
 
 st.header("Data Source")
 st.write("""
@@ -92,4 +91,4 @@ st.write("""
          into a CSV file, provided here. Watch providers were pulled from
          JustWatch.
          """)
-st.dataframe(combined_df, hide_index=True)
+st.dataframe(df, hide_index=True)
