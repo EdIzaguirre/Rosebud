@@ -2,6 +2,7 @@ import streamlit as st
 from chat_app import FilmSearch
 import pandas as pd
 import json
+import base64
 
 st.set_page_config(
     page_title="Film Search",
@@ -77,10 +78,29 @@ with st.form('my_form'):
 
 st.divider()
 
+
+def render_svg(svg, width=200, height=50):
+    b64 = base64.b64encode(svg.encode('utf-8')).decode("utf-8")
+    html = r'<img src="data:image/svg+xml;base64,%s" width="%s" height="%s"/>' % (
+        b64, width, height)
+    st.markdown(html, unsafe_allow_html=True)
+
+
+# Open the SVG file and read it into a variable
+with open('tmdb_logo.svg', 'r') as f:
+    svg = f.read()
+
+
 st.header("Data Source")
-st.write(""" All data was pulled from the The Movie Database (TMDB) and 
-         compiled into a CSV file. Watch providers were pulled from JustWatch.
-        Below is a snippet of data from the year 2023. """)
+
+# Call the function to display the SVG
+render_svg(svg)
+
+st.write(""" This application uses TMDB and the TMDB APIs but is
+         not endorsed, certified, or otherwise approved by TMDB.
+         All data was compiled into a CSV file. Watch providers 
+         were pulled from JustWatch. Below is a snippet of data
+         from the year 2023. """)
 
 df = pd.read_csv('./data/2023_movie_collection_data.csv')
 
