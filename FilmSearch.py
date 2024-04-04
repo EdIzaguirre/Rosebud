@@ -14,7 +14,7 @@ with st.sidebar:
         "OpenAI API Key", key="chatbot_api_key", type="password")
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
     "[View the source code](https://github.com/EdIzaguirre/FilmSearchOpen)"
-    "If there is nothing being generated after putting in your API key, typing your query, and hitting submit, check to make sure your API key is correct."
+    "If there is nothing being generated after putting in your API key, typing your query, and hitting submit, check to make sure your API key is correct and that your OpenAI account is funded."
 
 with open('./config.json') as f:
     config = json.load(f)
