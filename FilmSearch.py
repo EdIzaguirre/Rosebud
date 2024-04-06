@@ -34,7 +34,7 @@ films from the years {beginning_year}-{ending_year}. It will only recommend film
 database.
 """
 
-"If you are interested in details on how this was implemented, check out [this article](https://medium.com/@ed.izaguirre/16b4fa23e9ad)."
+# "If you are interested in details on how this was implemented, check out [this article](https://medium.com/@ed.izaguirre/16b4fa23e9ad)."
 
 
 def generate_response(input_text, openai_api_key):
