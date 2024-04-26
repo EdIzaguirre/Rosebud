@@ -23,8 +23,8 @@ def get_id_list(api_key, year, max_retries=5):
 
     total_pages = 5  # 5 pages of ids = 100 movies
     for page in range(1, total_pages + 1):
-        response = requests.get(url + f'&page={page}')
         for i in range(max_retries):
+            response = requests.get(url + f'&page={page}')
             if response.status_code == 429:
                 # If the response was a 429, wait and then try again
                 print(
@@ -35,6 +35,7 @@ def get_id_list(api_key, year, max_retries=5):
             else:
                 # If the response was not a 429, continue
                 dict = response.json()
+                print(dict)
                 for film in dict['results']:
                     movie_ids.append(str(film['id']))
                 break
@@ -58,8 +59,8 @@ def get_data(API_key, Movie_ID, max_retries=5):
     query = 'https://api.themoviedb.org/3/movie/' + Movie_ID + \
         '?api_key='+API_key + '&append_to_response=keywords,' + \
             'watch/providers,credits&language=en-US'
-    response = requests.get(query)
     for i in range(max_retries):
+        response = requests.get(query)
         if response.status_code == 429:
             # If the response was a 429, wait and then try again
             print(
