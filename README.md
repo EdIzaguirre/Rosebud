@@ -1,5 +1,7 @@
 # 🎥 FilmSearch: The better way to search for films.
 
+Note: Check out my updated Film Search project, now free to use and rebranded as Rosebud! [Link](https://github.com/EdIzaguirre/FilmSearch)
+
 This film search bot has been given a database of roughly the 100 most popular films from the years 1920-2023. It will only recommend films from this database. This project is meant as a proof-of-concept. The idea is to provide users of streaming services e.g. Netflix, Hulu, etc. an option for semantic search rather than full-text search.
 
 Bot was created using LangChain and Pinecone for the vector database. This application uses a variant of Retrieval Augmented Generation (RAG) that uses what is called a self-querying retriever in order to filter the films via metadata.
