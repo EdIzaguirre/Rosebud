@@ -1,1 +1,6 @@
-secrets.toml
+__pycache__/
+.env
+.DS_Store
+wandb/
+deploy_pinecone_flow.sh
+data/

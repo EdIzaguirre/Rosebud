@@ -1,10 +1,15 @@
 pinecone==4.0.0
 langchain==0.2.7
 python-dotenv==1.0.1
-pandas==2.2.2
 streamlit==1.36.0
 iso-639==0.4.5
+prefect==2.19.7
 langchain-community==0.2.7
 langchain-openai==0.1.14
 langchain-pinecone==0.1.1
+ragas==0.1.10
 lark==1.1.9
+datasets==2.20.0
+weave==0.50.10
+wandb==0.17.5
+pytest==8.3.2

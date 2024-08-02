@@ -2,6 +2,8 @@ import requests
 import csv
 import time
 from iso639 import languages
+import openai
+import random
 
 
 def get_id_list(api_key, year, max_retries=5):
@@ -15,9 +17,7 @@ def get_id_list(api_key, year, max_retries=5):
     returns:
     list of str: List of all movie ids in {year}
     """
-    url = f'https://api.themoviedb.org/3/discover/movie?api_key={
-        api_key}&primary_release_year={
-            year}&include_video=false&language=en-US&sort_by=popularity.desc'
+    url = f'https://api.themoviedb.org/3/discover/movie?api_key={api_key}&primary_release_year={year}&include_video=false&language=en-US&sort_by=popularity.desc'
 
     movie_ids = []
 
@@ -28,14 +28,12 @@ def get_id_list(api_key, year, max_retries=5):
             if response.status_code == 429:
                 # If the response was a 429, wait and then try again
                 print(
-                    f"Request limit reached. Waiting and retrying ({i+1}/{
-                        max_retries})")
+                    f"Request limit reached. Waiting and retrying ({i + 1}/{max_retries})")
                 time.sleep(2 ** i)  # Exponential backoff
 
             else:
                 # If the response was not a 429, continue
                 dict = response.json()
-                print(dict)
                 for film in dict['results']:
                     movie_ids.append(str(film['id']))
                 break
@@ -46,6 +44,7 @@ def get_id_list(api_key, year, max_retries=5):
 def get_data(API_key, Movie_ID, max_retries=5):
     """
     Function to pull details of your film of interest in JSON format.
+    Assumes desired language is in US-Engish.
 
     parameters:
     API_key (str): Your API key for TMBD
@@ -57,15 +56,14 @@ def get_data(API_key, Movie_ID, max_retries=5):
     """
 
     query = 'https://api.themoviedb.org/3/movie/' + Movie_ID + \
-        '?api_key='+API_key + '&append_to_response=keywords,' + \
+        '?api_key=' + API_key + '&append_to_response=keywords,' + \
             'watch/providers,credits&language=en-US'
     for i in range(max_retries):
         response = requests.get(query)
         if response.status_code == 429:
             # If the response was a 429, wait and then try again
             print(
-                f"Request limit reached. Waiting and retrying ({i+1}/{
-                    max_retries})")
+                f"Request limit reached. Waiting and retrying ({i + 1}/{max_retries})")
             time.sleep(2 ** i)  # Exponential backoff
         else:
             dict = response.json()
@@ -96,6 +94,7 @@ def write_file(filename, dict):
     overview = dict['overview']
     all_genres = dict['genres']
     prod_companies = dict['production_companies']
+    rating = dict['vote_average']
 
     # Parsing release date
     release_year = release_date.split('-')[0]
@@ -170,6 +169,12 @@ def write_file(filename, dict):
         prod_str += company['name'] + ", "
     prod_str = prod_str[:-2]
 
+    # Checking for null in ratings
+    if rating == 'null':
+        rating = 0
+    else:
+        rating = round(float(rating), 1)
+
     # # Adding Wikipedia summaries if available
     # wiki_wiki = wikipediaapi.Wikipedia(
     #     user_agent='FilmBot (ed.izaguirre@pm.me)',
@@ -189,7 +194,7 @@ def write_file(filename, dict):
     result = [title, runtime, language, overview,
               release_year, genre_str, keyword_str,
               actor_str, director_str, stream_str,
-              buy_str, rent_str, prod_str]
+              buy_str, rent_str, prod_str, rating]
 
     # write data
     csvwriter.writerow(result)

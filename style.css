@@ -1,0 +1,29 @@
+/* Remove Streamlit UI pieces*/
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Change the highlight color for buttons */
+.stButton > button:hover {
+    background-color: #f0f2f6;  /* Green background on hover */
+    color: black;  /* White text on hover */
+    border-color: #f0f2f6;
+}
+
+/* Change the focus state */
+.stButton > button:focus:not(:active) {
+    box-shadow: 10px 5px 5px #f0f2f6;  /* Green glow effect */
+}
+
+/* Change the active/clicked state */
+.stButton > button:active {
+    background-color: #f0f2f6;  /* Darker green when clicked */
+    color: black;
+    border-color: #f0f2f6;
+}
+
+/* Hide the anchor links for headings */
+h1 a.anchor-link,
+h2 a.anchor-link {
+  display: none;
+}
