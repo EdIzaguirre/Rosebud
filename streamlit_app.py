@@ -167,7 +167,7 @@ with st.sidebar:
     in Towards Data Science.
     """
 
-    "To see the code repository for this project, [click here](https://github.com/EdIzaguirre/FilmSearch)."
+    "To see the code repository for this project, [click here](https://github.com/EdIzaguirre/Rosebud)."
 
     st.header("FAQ")
 
