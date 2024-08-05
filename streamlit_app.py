@@ -163,7 +163,7 @@ with st.sidebar:
     This film recommendation bot has been given a database of roughly the 100 most popular
     films from the years {beginning_year}-{ending_year}. **It will only recommend films from this
     database.** This bot is able to create metadata filters for your recommendations via natural language.
-    For more information, please [see my article](https://towardsdatascience.com/how-to-build-a-rag-system-with-a-self-querying-retriever-in-langchain-16b4fa23e9ad)
+    For more information, please [see my article](https://towardsdatascience.com/productionizing-a-rag-app-04c857e0966e)
     in Towards Data Science.
     """
 
