@@ -11,7 +11,8 @@ Rosebud is a film recommendation Q&A bot:
 - 🗄️ Uses a Pinecone vector database of roughly the 100 most popular films each year from 1950-2023. **It will only recommend films from this database**. 
 - 💯 Incorporates both offline and online evaluation.
 - 🙌 Totally open-source and privacy preserving.
-- 📕 For more information, please [see my article in *Towards Data Science*](https://towardsdatascience.com/how-to-build-a-rag-system-with-a-self-querying-retriever-in-langchain-16b4fa23e9ad).
+- 📕 For more information, please [see my most recent article in *Towards Data Science*](https://towardsdatascience.com/productionizing-a-rag-app-04c857e0966e).
+You can also read an [earlier article](https://towardsdatascience.com/how-to-build-a-rag-system-with-a-self-querying-retriever-in-langchain-16b4fa23e9ad) featuring a dev-oriented version of this project.
 
 ## Overview of Tools Used 🛠️
 - **LangChain**: Framework to create the `rosebud_chat_model`. Important in the creation of the self-querying retriever as well as connecting the OpenAI Chat model to the Pinecone vector store for retrieval augmented generation (RAG).
