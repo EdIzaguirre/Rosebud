@@ -2,7 +2,7 @@
 
 ### Let's discover films.
 
-Try out the app here: [link](https://www.rosebudrecs.com/).
+Try out the app here: [link](https://filmsearch.azurewebsites.net/).
 
 Rosebud is a film recommendation Q&A bot: 
 
