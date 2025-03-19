@@ -2,7 +2,7 @@
 
 ### Let's discover films.
 
-Note: If you are interested in web applications with generative AI integration, check out [Los Angeles AI Apps](losangelesaiapps.com)🔥.
+Note: If you are interested in web applications with generative AI integration, check out [Los Angeles AI Apps](https://losangelesaiapps.com)🔥.
 
 Try out the app here: [link](https://filmsearch.azurewebsites.net/).
 
