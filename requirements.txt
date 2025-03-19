@@ -10,6 +10,6 @@ langchain-pinecone==0.1.1
 ragas==0.1.10
 lark==1.1.9
 datasets==2.20.0
-weave==0.50.10
+weave==0.51.37
 wandb==0.17.5
 pytest==8.3.2
