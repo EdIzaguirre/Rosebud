@@ -2,6 +2,8 @@
 
 ### Let's discover films.
 
+Note: If you are interested in web applications with generative AI integration, check out [Los Angeles AI Apps](losangelesaiapps.com)🔥.
+
 Try out the app here: [link](https://filmsearch.azurewebsites.net/).
 
 Rosebud is a film recommendation Q&A bot: 
