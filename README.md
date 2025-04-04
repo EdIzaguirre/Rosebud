@@ -103,3 +103,15 @@ The `rosebud_chat_model` class contains six methods:
 - `initialize_chat_model`: Creates the summary model, which uses `gpt-4o-mini` to take in the retrieved film documents from Pinecone and crafts recommendations to answer the user's query. There is a basic template provided here so that the bot creates structured output. 
 - `predict_stream`: The method used to stream predictions to the Streamlit front-end. Chunks are streamed from the model one at a time. 
 - `predict`: The method used to perform offline evaluation using the RAGAS framework. Inputs and outputs to this function are tracked using Weave. The output here is not streamed, and is performed asynchronously to facilitate fast off-line evaluation.
+
+## The .env file format
+```
+LANGCHAIN_API_KEY=
+OPENAI_API_KEY=
+TMBD_API_KEY = 
+PINECONE_API_KEY = 
+PINECONE_INDEX_NAME = 
+TMDB_BEARER_TOKEN = 
+LANGCHAIN_TRACING_V2=
+WANDB_API_KEY=
+```
