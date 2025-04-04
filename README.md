@@ -6,7 +6,7 @@ Note: If you are interested in web applications with generative AI integration, 
 
 Try out the app here: [link](https://filmsearch.azurewebsites.net/).
 
-Rosebud is a film recommendation Q&A bot: 
+Rosebud is a film recommendation Q&A bot that: 
 
 - 🎥 Takes in a user's query and returns appropriate film recommendations. 
 - 💬 Goes beyond a basic RAG app. Uses both semantic search across the database as well as metadata filters that are created on the fly using natural language. 
