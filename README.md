@@ -105,6 +105,7 @@ The `rosebud_chat_model` class contains six methods:
 - `predict`: The method used to perform offline evaluation using the RAGAS framework. Inputs and outputs to this function are tracked using Weave. The output here is not streamed, and is performed asynchronously to facilitate fast off-line evaluation.
 
 ## The .env file format
+To run the program, you will need the following environment variables stored in an .env file in the root of your project. Make sure not to commit these to GitHub, add the .env file to your .gitignore file.
 ```
 LANGCHAIN_API_KEY=
 OPENAI_API_KEY=
